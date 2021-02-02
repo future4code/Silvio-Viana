@@ -1,0 +1,88 @@
+body{
+    background-color: rgb(97, 245, 97);
+    text-align: center;
+}
+.redes{
+    width: 100px;
+    height: 100px;
+}
+a:link{
+    text-decoration: none;
+    background-color: rgb(74, 74, 238);
+    padding: 2px 8px;
+    margin: 0px 4px;
+    border-radius: 5px;
+}
+a{
+    color: white;
+}
+a:link:hover{
+    background-color: rgb(11, 11, 190);
+}
+.imagem-estoque{
+    width: 180px;
+    height: 120px;
+}
+table{
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 100%;
+}
+th{
+    background-color: rgb(213, 228, 83);
+    height: 50px;
+}
+td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    background-color: white;
+    font-size: 42px;
+    
+}
+h1{
+    font-size: 72px;
+}
+p, a{
+    font-size: 42px;
+}
+.titulo
+{
+    font-size: 72px;
+}
+.subtitulo
+{
+    font-size: 42px;
+}
+ul, li{
+    font-size: 27px;
+}
+li{
+    border: 1px solid black;
+    margin: 3px 0px;
+    background-color:rgb(43, 200, 206);
+    color: rgb(88, 10, 10);
+}
+label{
+    font-size: 37px;
+    width: 400px;
+    display: inline-block;
+    text-align: right;
+}
+input{
+    margin: 2px 0px; 
+    height: 42px;
+    width: 400px;
+}
+button{
+    font-size: 42px;
+    margin: 10px 0px;
+    width: 600px;
+    height: 60px;
+    background-color: rgb(19, 184, 129);
+    border-radius: 5px;
+    color: rgb(225, 230, 220)
+}
+button:hover{
+    background-color: rgb(221, 100, 56);
+}
