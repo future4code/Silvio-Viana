@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Gaia</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div>
+            <p class="titulo">Loja Gaia</p>
+        </div>
+    </header>
+    
+    <div>
+        <a href="index.html">Página Inicial</a>
+        <a href="ctrl-estoque.html">Controle de Estoque</a>
+        <a href="add-produto.html">Adicionar Produto</a>
+        <a href="funcionarios.html">Funcionários</a>
+    </div>
+    <br><br><br>
+    <form action="">
+        <div>
+            <label for="produtos">Produtos: </label>
+            <input type="text" id="produtos" name="produtos">
+        </div>
+        
+        <div>
+            <label for="quantidades">Quantidades: </label>
+            <input type="text" id="quantidades" name="quantidades">
+        </div>
+
+        <div>
+            <label for="total">Preço Total: </label>
+            <input type="text" id="total" name="total">
+        </div>
+        
+        <div>
+            <label for="pagamento">Modo De Pagamento: </label>
+            <select name="pagamento" id="pagamento">
+                <option>Dinheiro</option>
+                <option>Débito</option>
+                <option>Crédito</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="vendedor">Vendedor: </label>
+            <select name="vendedor" id="vendedor">
+                <option>Silvio Viana</option>
+                <option>Amélia Maria</option>
+                <option>Marcelo Augusto</option>
+                <option>Fernanda Souza</option>
+            </select>
+        </div>
+        <br>
+        <div class="form-add">
+            <button type="submit">Adicionar ao Carrinho</button>
+        </div>
+
+    </form>
+    <br>
+    <a href="historico.html">Histórico</a>
+    <footer>
+        <p> Criado por Silvio Viana</p>
+    </footer>   
+</body>
+</html>
