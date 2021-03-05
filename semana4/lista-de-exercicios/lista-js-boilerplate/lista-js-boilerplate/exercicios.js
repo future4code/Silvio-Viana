@@ -317,14 +317,28 @@ function retornaPessoasNaoAutorizadas() {
 //Exercício 19
 
 const consultas = [
-  { nome: "João", genero: "masculino", cancelada: true, dataDaConsulta: "01/10/2019" },
-  { nome: "Pedro", genero: "masculino", cancelada: false, dataDaConsulta: "02/10/2019" },
-  { nome: "Paula", genero: "feminino", cancelada: true, dataDaConsulta: "03/11/2019" },
-  { nome: "Márcia", genero: "feminino", cancelada: false, dataDaConsulta: "04/11/2019" }
-  ]
+   { nome: "João", genero: "masculino", cancelada: false, dataDaConsulta: "01/10/2019" },
+   { nome: "Pedro", genero: "masculino", cancelada: true, dataDaConsulta: "02/10/2019" },
+   { nome: "Paula", genero: "feminino", cancelada: false, dataDaConsulta: "03/11/2019" },
+   { nome: "Márcia", genero: "feminino", cancelada: true, dataDaConsulta: "04/11/2019" }
+ ]
 
-function retornaEmailConsulta(consultas) {
-  // implemente sua lógica aqui
+function retornaEmailConsulta() {
+   return consultas.map((pessoa) => {
+      let tratamento = "Sra."
+      let lembrança = "lembrá-la"
+      if (pessoa.genero === "masculino") {
+         tratamento = "Sr."
+         lembrança = "lembrá-lo"
+      }
+
+      if (pessoa.cancelada) {
+         return `Olá, ${tratamento} ${pessoa.nome}. Infelizmente sua consulta marcada para o dia ${pessoa.dataDaConsulta} foi cancelada. Se quiser, pode entrar em contato conosco para remarcá-la.`
+      }
+      else {
+         return `Olá, ${tratamento} ${pessoa.nome}. Estamos enviando esta mensagem para ${lembrança} da sua consulta no dia ${pessoa.dataDaConsulta}. Por favor, acuse o recebimento deste-email.`
+      }
+   })
 }
 
 //Exercício 20
