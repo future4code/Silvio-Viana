@@ -1,7 +1,11 @@
 //Exercício 1
 
 function inverteArray(array) {
-  // implemente sua lógica aqui
+  let novoArray = []
+  for (let i = array.length - 1; i >= 0; i--) {
+     novoArray.push(array[i])
+  }
+  return novoArray
 }
 
 //Exercício 2
