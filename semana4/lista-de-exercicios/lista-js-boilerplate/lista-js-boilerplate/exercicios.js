@@ -262,19 +262,28 @@ function menoresDe18(arrayDePessoas) {
 // Exercício 17, letra A
 
 function multiplicaArrayPor2(array) {
-   // implemente sua lógica aqui
+   return array.map((num) => {
+      return num * 2
+   })
 }
 
 // Exercício 17, letra B
 
 function multiplicaArrayPor2S(array) {
-  // implemente sua lógica aqui
+   return array.map((num) => {
+      return String(num * 2)
+   })
 }
 
 // Exercício 17, letra C
 
 function verificaParidade(array) {
-   // implemente sua lógica aqui
+   return array.map((num) => {
+      if (num % 2 === 0) {
+         return num + " é par"
+      }
+      return num + " é ímpar"
+   })
 }
 
 // Exercício 18
