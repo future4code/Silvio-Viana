@@ -157,7 +157,38 @@ function segundoMaiorEMenor(array) {
 //Exercício 11
 
 function ordenaArray(array) {
-   // implemente sua lógica aqui
+   let novoArray = []
+   for (let i = 0; i < array.length; i++) {
+      if (i === 0) {
+         novoArray.push(array[i])
+      }
+      else {
+         let menor = true
+         for (let j = 0; j < array.length; j++) {
+            if (i != j) {
+               if (array[i] > novoArray[j]) {
+                  let continuar = true
+                  let z = j
+                  while (continuar) {
+                     z++
+                     if(array[i] > novoArray[z]) {
+                     }
+                     else{
+                        novoArray.splice(z, 0, array[i])
+                        continuar = false
+                        menor = false
+                     }
+                  }
+               }
+               break
+            }
+         }
+         if (menor) {
+            novoArray.splice(0, 0, array[i])
+         }
+      }
+   }
+   return novoArray
 }
 
 // Exercício 12
