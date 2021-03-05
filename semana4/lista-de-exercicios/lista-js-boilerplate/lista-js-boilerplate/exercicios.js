@@ -60,7 +60,11 @@ function retornaExpressoesBooleanas() {
 //Exercício 7
 
 function retornaNNumerosPares(n) {
-   // implemente sua lógica aqui
+   let novoArray = []
+   for (let i = 0; i < n; i++) {
+      novoArray.push(i * 2)
+   }
+   return novoArray
 }
 
 // Exercício 8
