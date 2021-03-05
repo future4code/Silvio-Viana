@@ -111,7 +111,47 @@ function comparaDoisNumeros(num1, num2) {
 // Exercício 10
 
 function segundoMaiorEMenor(array) {
-   // implemente sua lógica aqui
+   let maior = array[0]
+   let maiorSegundo
+   let menor = array[0]
+   let menorSegundo
+   let maiorPrimeiroElemento = true
+   let menorPrimeiroElemento = true
+
+   // Caso o menor ou maior número não for o primeiro elemento da lista esse "for" é o suficiente
+   for (num of array) {
+      if (num > maior) {
+         maiorSegundo = maior
+         maior = num
+         maiorPrimeiroElemento = false
+      }
+      if (num < menor) {
+         menorSegundo = menor
+         menor = num
+         menorPrimeiroElemento  = false
+      }
+   }
+   // Caso o menor ou maior número for o primeiro elemento da lista esses "for" são ativados
+   // O primeiro "for" dava erro se o menor ou maior elemento fosse o primeiro item
+   if (maiorPrimeiroElemento) {
+      maiorSegundo = array[1]
+      for (num of array) {
+         if (num > maiorSegundo && num != array[0]) {
+            maiorSegundo = num
+         }
+      }
+   }
+   if (menorPrimeiroElemento) {
+      menorSegundo = array[1]
+      for (num of array) {
+         if (num < menorSegundo && num != array[0]) {
+            menorSegundo = num
+         }
+      }
+   }
+
+   const resposta = [maiorSegundo, menorSegundo]
+   return resposta
 }
 
 //Exercício 11
