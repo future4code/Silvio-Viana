@@ -7,3 +7,7 @@ export function IconeComContador(props) {
 		<p>{props.valorContador}</p>
 	</div>
 }
+
+export function Compartilhar(props) {
+	return <img className="icone" alt={'Icone'} src={props.icone} onClick={props.onClickIcone}/>
+}

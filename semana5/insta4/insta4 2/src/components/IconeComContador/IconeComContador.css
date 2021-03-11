@@ -5,3 +5,13 @@
 .icon-container img {
     margin-right: 5px;
 }
+
+.icon-container2 {
+    display: flex;
+    justify-content: space-around;
+}
+.icone {
+    height: 30px;
+    width: 30px;
+    padding: 15px 0px;
+}

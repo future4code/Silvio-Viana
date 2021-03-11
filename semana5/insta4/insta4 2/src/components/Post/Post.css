@@ -29,3 +29,12 @@
 .post-photo {
     width: 100%;
 }
+
+.compartilhamento {
+    display: flex;
+    justify-content: space-around;
+}
+#mensagem {
+    width: 97.4%;
+    height: 25px;
+}
