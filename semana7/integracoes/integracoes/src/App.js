@@ -76,13 +76,15 @@ class App extends React.Component {
   apagarUsuario = (userId) => {
     axios.delete(`https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${userId}`,
     {
-      headers: "silvio-viana-cruz"
+      
+      headers: {Authorization: "silvio-viana-cruz"}
     })
     .then(res => {
       alert("Usuário Apagado com Sucesso")
     })
     .catch(err => {
       console.log(err)
+      this.getAllUsers()
     })
   }
 
