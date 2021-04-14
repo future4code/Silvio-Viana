@@ -1,5 +1,5 @@
 import { useHistory } from 'react-router-dom'
-import { goToAdminHome, goToListTrips, goToLogin } from '../routes/coordinator'
+import { goToAdminHome, goToListTrips } from '../routes/coordinator'
 
 
 export default function Home() {

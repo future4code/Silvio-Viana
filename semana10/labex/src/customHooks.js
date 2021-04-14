@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { goToLogin } from './routes/coordinator'
 
 export const useInput = () => {
     
