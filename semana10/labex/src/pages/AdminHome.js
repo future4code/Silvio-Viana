@@ -1,8 +1,10 @@
 import { useHistory } from 'react-router-dom'
 import { goToCreateTrip, goToHome, goToTripDetails } from '../routes/coordinator'
+import { useProtectedPage } from '../customHooks'
 
 
 export default function AdminHome() {
+    useProtectedPage()
 
     const history = useHistory()
 

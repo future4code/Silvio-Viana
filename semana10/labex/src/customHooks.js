@@ -1,4 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
+import { goToLogin } from './routes/coordinator'
 
 export const useInput = () => {
     
@@ -30,4 +32,16 @@ export const useId = () => {
     }
 
     return [id, handleEvent, value, clearInput]
+}
+
+export const useProtectedPage = () => {
+    const history = useHistory()
+
+    useEffect(() => {
+        const token = window.localStorage.getItem("token")
+
+        if (token === null) {
+            history.replace("/login")
+        }
+    }, [history])
 }
