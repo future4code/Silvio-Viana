@@ -42,11 +42,17 @@ export default function AdminHome() {
         }
     }
 
+    const logout = () => {
+        window.localStorage.removeItem("token")
+        history.replace("/login")
+    }
+
     return (
         <div>
             <h1>Página de Administrador</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
-            <button onClick={() => goToCreateTrip(history)}>Criar Viagem</button><hr/>
+            <button onClick={() => goToCreateTrip(history)}>Criar Viagem</button>
+            <button onClick={logout}>Logout</button><hr/>
             {trips.map((trip) => {
                 return <div key ={trip.id}>
                     <h1 onClick={() => goToTripDetails(history, trip.id)}>{trip.name}</h1>

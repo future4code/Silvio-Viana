@@ -7,6 +7,7 @@ export const useInput = () => {
 
     const handleInput = (event) => {
         setValue(event.target.value)
+        console.log(event.target.value)
     }
 
     const clearInput = () => {

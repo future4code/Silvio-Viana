@@ -3,6 +3,7 @@ import { goToAdminHome, goToHome } from '../routes/coordinator'
 import { useInput } from '../customHooks'
 import axios from 'axios'
 import { baseUrl } from '../parameters'
+import { useEffect } from 'react'
 
 
 export default function Login() {
@@ -10,6 +11,14 @@ export default function Login() {
     const history = useHistory()
     const [login, setLogin] = useInput()
     const [senha, setSenha] = useInput()
+
+    useEffect(() => {
+        const token = window.localStorage.getItem("token")
+
+        if (token !== null) {
+            history.replace("/admin/trips/list")
+        }
+    }, [])
 
     const entrarAdmin = async () => {
         const body = {
