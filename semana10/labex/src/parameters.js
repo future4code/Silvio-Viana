@@ -1,5 +1,35 @@
 export const baseUrl = 'https://us-central1-labenu-apis.cloudfunctions.net/labeX/hsilvio'
 
+export const applyForm = {
+    name: "",
+    age: "",
+    applicationText: "",
+    profession: "",
+    country: ""
+}
+
+export const loginForm = {
+	email: "",
+	password: ""
+}
+
+export const createForm = {
+	name: "",
+	planet: "",
+	date: "",
+	description: "",
+	durationInDays: ""
+}
+
+export const dataMinima = () => {
+    //A viagem só pode ser criada com no mínimo um ano de antecedência
+    const data = new Date()
+    let ano = data.getFullYear()
+    let mes = String(data.getMonth() + 1).padStart(2, '0')
+    let dia = String(data.getDate()).padStart(2, '0')
+    return `${ano + 1}-${dia}-${mes}`
+    //Não conseguir fazer o min do date funcionar por meio de uma variável
+}
 
 // fonte: https://github.com/juliolvfilho/lista-paises
 export const listaPaises = [

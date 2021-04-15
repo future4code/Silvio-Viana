@@ -2,21 +2,26 @@ import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import { goToListTrips } from '../routes/coordinator'
-import { baseUrl, listaPaises } from '../parameters'
-import { useInput, useId } from '../customHooks'
+import { applyForm, baseUrl, listaPaises } from '../parameters'
 
 
 export default function ApplicationForm() {
     
     const [trips, setTrips] = useState([])
-    const [nome, setNome, clearNome] = useInput()
-    const [idade, setIdade, clearIdade] = useInput()
-    const [texto, setTexto, clearTexto] = useInput()
-    const [profissao, setProfissao, clearProfissao] = useInput()
-    const [origem, setOrigem,clearOrigem] = useInput()
-    const [idViagem, setIdViagem, viagemNome, clearViagem] = useId()
-
+    const [tripId, setTripId] = useState("")
+    const [tripValue, setTripValue] = useState("")
+    const [form, setForm] = useState(applyForm)
     const history = useHistory()
+    
+    const onChange = (event) => {
+        const { name, value } = event.target
+        setForm({...form, [name]: value})
+    }
+
+    const onChangeTrip = (event) => {
+        setTripId(event.target[event.target.selectedIndex].id)
+        setTripValue(event.target.value)
+    }
 
     useEffect(() => {
         getTrips()
@@ -32,32 +37,13 @@ export default function ApplicationForm() {
         }
     }
 
-    const applyToTrip = async () => {
-        if (!nome || !idade || !texto || !profissao || !origem || !idViagem) {
-            window.alert("Você precisa digitar todas as informações!")
-            return
-        }
-        if (idViagem < 1) {
-            window.alert("Idade Inválida")
-            return
-        }
-
-        const body = {
-            name: nome,
-            age: idade,
-            applicationText: texto,
-            profession: profissao,
-            country: origem
-        }
+    const applyToTrip = async (event) => {
+        event.preventDefault()
         try {
-            await axios.post(`${baseUrl}/trips/${idViagem}/apply`, body)
+            await axios.post(`${baseUrl}/trips/${tripId}/apply`, form)
             window.alert("Inscrição feita com sucesso")
-            clearNome()
-            clearIdade()
-            clearTexto()
-            clearProfissao()
-            clearOrigem()
-            clearViagem()
+            setForm(applyForm)
+            setTripValue("")
         }
         catch (error) {
             console.log(error)
@@ -68,26 +54,27 @@ export default function ApplicationForm() {
         <div>
             <h1>Inscrever-se para uma Viagem</h1>
             <button onClick={() => goToListTrips(history)}>Voltar</button>
+            <form onSubmit={applyToTrip}>
+                <select value={tripValue} onChange={onChangeTrip} required >
+                <option id=""></option>
+                    {trips.map((trip) => {
+                        return <option key={trip.id} id={trip.id}>{trip.name}</option>
+                    })}
+                </select>
 
-            <select onChange={setIdViagem} value={viagemNome}>
-            <option id=""></option>
-                {trips.map((trip) => {
-                    return <option key={trip.id} id={trip.id}>{trip.name}</option>
-                })}
-            </select>
+                <input name="name" value ={form.name} onChange={onChange} placeholder="Nome" pattern="[A-Za-z ]{3,}" required />
+                <input name="age" value ={form.age} onChange={onChange} placeholder="Idade" type="number" min="18" required />
+                <input name="applicationText" value ={form.applicationText} onChange={onChange} placeholder="Texto de Candidatura" pattern="[A-Za-z0-9 ]{30,}" required />
+                <input name="profession" value ={form.profession} onChange={onChange} placeholder="Profissão" pattern="[A-Za-z0-9 ]{10,}"  required/>
 
-            <input value ={nome} onChange={setNome} placeholder="Nome"/>
-            <input value ={idade} onChange={setIdade} placeholder="Idade" type="number"/>
-            <input value ={texto} onChange={setTexto} placeholder="Texto de Candidatura"/>
-            <input value ={profissao} onChange={setProfissao} placeholder="Profissão"/>
-
-            <select onChange={setOrigem} value={origem}>
-                <option></option>
-                {listaPaises.map((nacao) => {
-                    return <option key={nacao.ordem}>{nacao.nome}</option>
-                })}
-            </select>
-            <button onClick={applyToTrip}>Enviar</button>
+                <select name="country" onChange={onChange} value={form.country} required>
+                    <option></option>
+                    {listaPaises.map((nacao) => {
+                        return <option key={nacao.ordem}>{nacao.nome}</option>
+                    })}
+                </select>
+                <button>Enviar</button>
+            </form>
         </div>
     )
 }

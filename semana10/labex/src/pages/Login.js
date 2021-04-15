@@ -1,16 +1,14 @@
 import { useHistory } from 'react-router-dom'
 import { goToAdminHome, goToHome } from '../routes/coordinator'
-import { useInput } from '../customHooks'
 import axios from 'axios'
-import { baseUrl } from '../parameters'
-import { useEffect } from 'react'
+import { baseUrl, loginForm } from '../parameters'
+import { useEffect, useState } from 'react'
 
 
 export default function Login() {
 
     const history = useHistory()
-    const [login, setLogin] = useInput()
-    const [senha, setSenha] = useInput()
+    const [form, setForm] = useState(loginForm)
 
     useEffect(() => {
         const token = window.localStorage.getItem("token")
@@ -20,18 +18,21 @@ export default function Login() {
         }
     }, [])
 
-    const entrarAdmin = async () => {
-        const body = {
-            email: login,
-            password: senha
-        }
+    const onChange = (event) => {
+        const {name, value} = event.target
+        setForm({...form, [name]: value})
+    }
+
+    const entrarAdmin = async (event) => {
+        event.preventDefault()
         try {
-            const response = await axios.post(`${baseUrl}/login`, body)
+            const response = await axios.post(`${baseUrl}/login`, form)
             window.localStorage.setItem("token", response.data.token)
             goToAdminHome(history)
         }
         catch (error) {
             console.log(error)
+            window.alert("Usuário ou Senha inválidos")
         }
 
     }
@@ -39,9 +40,11 @@ export default function Login() {
         <div>
             <h1>Login</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
-            <input onChange={setLogin} placeholder="Login"/>
-            <input onChange={setSenha} placeholder="Senha"/>
-            <button onClick={entrarAdmin}>Entrar</button>
+            <form onSubmit={entrarAdmin}>
+                <input type="email" name="email" onChange={onChange} placeholder="Login" required/>
+                <input type="password" name="password" onChange={onChange} placeholder="Senha" required/>
+                <button>Entrar</button>
+            </form>
 
         </div>
     )
