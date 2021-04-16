@@ -1,10 +1,12 @@
+import { ApprovedBox, ApprovedCard } from "../styled"
+
 export default function Approved(props) {
 
     return (
-        <section>
+        <ApprovedBox>
             <h1>Candidatos Aprovados</h1>
             {props.approved.map((candidate) => {
-                return <h1>{candidate.name}</h1>
+                return <ApprovedCard>{candidate.name}</ApprovedCard>
             })}
-        </section>)
+        </ApprovedBox>)
 }

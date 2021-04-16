@@ -31,7 +31,7 @@ export default function ListTrips() {
         <div>
             <h1>Lista de Viagens</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
-            <button onClick={() => goToApplicationForm(history)}>Inscrever-se</button><hr/>
+            <button onClick={() => goToApplicationForm(history)}>Inscrever-se</button>
             <ShowTrips trips={trips}/>
         </div>
     )

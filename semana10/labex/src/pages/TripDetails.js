@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import { goToAdminHome } from '../routes/coordinator'
+import { goToAdminHome, goToTripDetails } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'
 import ShowTrips from '../components/ShowTrips'
 import Candidates from '../components/Candidates'
 import Approved from '../components/Approved'
+import  { TripDetailsBox }from '../styled'
 
 
 export default function TripDetails() {
@@ -56,7 +57,7 @@ export default function TripDetails() {
     }
     
     return (
-        <div>
+        <TripDetailsBox>
             <h1>Detalhes da Viagem</h1>
             <button onClick={() => goToAdminHome(history)}>Voltar</button>
 
@@ -65,6 +66,6 @@ export default function TripDetails() {
             {!loading && <Candidates candidates={trip.candidates} decideCandidate={decideCandidate}/>}
 
             {!loading && <Approved approved={trip.approved} />}
-        </div>
+        </TripDetailsBox>
     )
 }

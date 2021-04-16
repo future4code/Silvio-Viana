@@ -5,6 +5,7 @@ import { baseUrl, createForm } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'
 import CreateForm from '../components/CreateForm'
+import { CreateFormBox } from '../styled'
 
 
 export default function CreateTrip() {
@@ -37,10 +38,10 @@ export default function CreateTrip() {
     }
 
     return (
-        <div>
+        <CreateFormBox>
             <h1>Criar Viagem</h1>
             <button onClick={() => goToAdminHome(history)}>Voltar</button>
             <CreateForm form={form} onChange={onChange} createTrip={createTrip} />
-        </div>
+        </CreateFormBox>
     )
 }

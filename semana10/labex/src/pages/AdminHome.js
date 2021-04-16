@@ -59,7 +59,7 @@ export default function AdminHome() {
             <h1>Página de Administrador</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
             <button onClick={() => goToCreateTrip(history)}>Criar Viagem</button>
-            <button onClick={logout}>Logout</button><hr/>
+            <button onClick={logout}>Logout</button>
             <ShowTripsAdmin trips={trips} history={history} deleteTrip={deleteTrip}/>
         </div>
     )

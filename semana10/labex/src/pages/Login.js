@@ -4,6 +4,7 @@ import { goToAdminHome, goToHome } from '../routes/coordinator'
 import { baseUrl, loginForm } from '../parameters'
 import axios from 'axios'
 import LoginForm from '../components/LoginForm'
+import { LoginFormBox } from '../styled'
 
 
 export default function Login() {
@@ -42,10 +43,10 @@ export default function Login() {
     }
 
     return (
-        <div>
+        <LoginFormBox>
             <h1>Login</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
             <LoginForm onChange={onChange} enterAdmin={enterAdmin} />
-        </div>
+        </LoginFormBox>
     )
 }

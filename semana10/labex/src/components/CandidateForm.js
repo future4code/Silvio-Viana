@@ -1,9 +1,12 @@
 import { listaPaises } from "../parameters"
+import { CandidateFormCard } from "../styled"
 
 export default function CandidateForm(props) {
 
     return (
-        <form onSubmit={props.applyToTrip}>
+        <CandidateFormCard onSubmit={props.applyToTrip}>
+            
+            <h3>Viagem</h3>
             <select value={props.tripValue} onChange={props.onChangeTrip} required >
                 <option id=""></option>
                 {props.trips.map((trip) => {
@@ -11,17 +14,26 @@ export default function CandidateForm(props) {
                 })}
             </select>
 
-            <input name="name" type="text" value ={props.form.name} onChange={props.onChange} placeholder="Nome" pattern="[A-Za-z ]{3,}" required />
-            <input name="age" type="number" min="18" value ={props.form.age} onChange={props.onChange} placeholder="Idade" required />
-            <input name="applicationText" type="text" value ={props.form.applicationText} onChange={props.onChange} placeholder="Texto de Candidatura" pattern="[A-Za-z0-9 ]{30,}" required />
-            <input name="profession" type="text" value ={props.form.profession} onChange={props.onChange} placeholder="Profissão" pattern="[A-Za-z0-9 ]{10,}" required />
-
-            <select name="country" onChange={props.onChange} value={props.form.country} required>
+            <h3>Nome</h3>
+            <input name="name" type="text" value ={props.form.name} onChange={props.onChange} pattern="[A-Za-z ]{3,}" required />
+            
+            <h3>Idade</h3>
+            <input name="age" type="number" min="18" value ={props.form.age} onChange={props.onChange} required />
+            
+            <h3>Texto de Candidatura</h3>
+            <input name="applicationText" type="text" value ={props.form.applicationText} onChange={props.onChange} pattern="[A-Za-z0-9 ]{30,}" required />
+            
+            <h3>Profissão</h3>
+            <input name="profession" type="text" value ={props.form.profession} onChange={props.onChange} pattern="[A-Za-z0-9 ]{10,}" required />
+            
+            <h3>País</h3>
+            <select name="country" value={props.form.country} onChange={props.onChange} required>
                 <option></option>
                 {listaPaises.map((nacao) => {
                     return <option key={nacao.ordem}>{nacao.nome}</option>
                 })}
             </select>
+            
             <button>Enviar</button>
-        </form>)
+        </CandidateFormCard>)
 }

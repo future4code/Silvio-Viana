@@ -1,14 +1,15 @@
 import { goToTripDetails } from "../routes/coordinator"
+import { AdminTripBox, AdminTripCard } from "../styled"
 
 export default function ShowTripsAdmin(props) {
 
     return (
-        <section>
+        <AdminTripBox>
             {props.trips.map((trip) => {
-                return <div key ={trip.id}>
+                return <AdminTripCard key ={trip.id}>
                     <h1 onClick={() => goToTripDetails(props.history, trip.id)}>{trip.name}</h1>
-                    <button onClick={() => props.deleteTrip(trip.id)}>Apagar</button><hr/>
-                    </div>
+                    <button onClick={() => props.deleteTrip(trip.id)}>Apagar</button>
+                    </AdminTripCard>
             })}
-        </section>)
+        </AdminTripBox>)
 }
