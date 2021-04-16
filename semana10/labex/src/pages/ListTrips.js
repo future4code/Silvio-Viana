@@ -1,20 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 import { goToHome, goToApplicationForm } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
+import axios from 'axios'
+import ShowTrips from '../components/ShowTrips'
 
 
 export default function ListTrips() {
 
-    const [trips, setTrips] = useState([])
     const history = useHistory()
+    const [trips, setTrips] = useState([])
 
     useEffect(() => {
+
         getTrips()
     }, [])
 
     const getTrips = async () => {
+
         try {
             const response = await axios.get(`${baseUrl}/trips`)
             setTrips(response.data.trips)
@@ -24,23 +27,12 @@ export default function ListTrips() {
         }
     }
     
-
     return (
         <div>
             <h1>Lista de Viagens</h1>
             <button onClick={() => goToHome(history)}>Voltar</button>
             <button onClick={() => goToApplicationForm(history)}>Inscrever-se</button><hr/>
-            {trips && trips.map((trip) => {
-                return (
-                    <article key={trip.id}>
-                        <p><b>Nome: </b>{trip.name}</p>
-                        <p><b>Descrição: </b>{trip.description}</p>
-                        <p><b>Planeta: </b>{trip.planet}</p>
-                        <p><b>Duração: </b>{trip.durationInDays} dias</p>
-                        <p><b>Data: </b>{trip.date}</p><hr/>
-                    </article>
-                )
-            })}
+            <ShowTrips trips={trips}/>
         </div>
     )
 }

@@ -1,22 +1,26 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
-import { goToCreateTrip, goToHome, goToTripDetails } from '../routes/coordinator'
-import { useProtectedPage } from '../customHooks'
+import { goToCreateTrip, goToHome } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
+import { useProtectedPage } from '../customHooks'
+import axios from 'axios'
+import ShowTripsAdmin from '../components/ShowTripsAdmin'
 
 
 export default function AdminHome() {
+
     useProtectedPage()
 
-    const [trips, setTrips] = useState([])
     const history = useHistory()
+    const [trips, setTrips] = useState([])
 
     useEffect(() => {
+
         getTrips()
     }, [])
 
     const getTrips = async () => {
+
         try {
             const response = await axios.get(`${baseUrl}/trips`)
             setTrips(response.data.trips)
@@ -27,11 +31,13 @@ export default function AdminHome() {
     }
 
     const deleteTrip = async (id) => {
+
         if (!window.confirm("Você tem certeza que quer apagar essa viagem?")) {
             return
         }
 
         const headers = {headers: {'auth': window.localStorage.getItem("token")}}
+
         try {
             await axios.delete(`${baseUrl}/trips/${id}`, headers)
             window.alert("Viagem Apagada com Sucesso")
@@ -43,6 +49,7 @@ export default function AdminHome() {
     }
 
     const logout = () => {
+
         window.localStorage.removeItem("token")
         history.replace("/login")
     }
@@ -53,12 +60,7 @@ export default function AdminHome() {
             <button onClick={() => goToHome(history)}>Voltar</button>
             <button onClick={() => goToCreateTrip(history)}>Criar Viagem</button>
             <button onClick={logout}>Logout</button><hr/>
-            {trips.map((trip) => {
-                return <div key ={trip.id}>
-                    <h1 onClick={() => goToTripDetails(history, trip.id)}>{trip.name}</h1>
-                    <button onClick={() => deleteTrip(trip.id)}>Apagar</button><hr/>
-                    </div>
-            })}
+            <ShowTripsAdmin trips={trips} history={history} deleteTrip={deleteTrip}/>
         </div>
     )
 }
