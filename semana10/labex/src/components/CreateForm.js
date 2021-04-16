@@ -1,3 +1,4 @@
+import { listaPlanetas } from "../parameters";
 import { CreateFormCard } from "../styled";
 
 export default function CreateForm(props) {
@@ -8,8 +9,9 @@ export default function CreateForm(props) {
             <h3>Planeta</h3>
             <select name="planet" value={props.form.planet} onChange={props.onChange} required >
                 <option></option>
-                <option>Lua</option>
-                <option>Sol</option>
+                {listaPlanetas.map((planeta) => {
+                    return <option>{planeta}</option>
+                })}
             </select>
 
             <h3>Nome da Viagem</h3>

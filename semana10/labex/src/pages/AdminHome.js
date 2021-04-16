@@ -5,6 +5,7 @@ import { baseUrl } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'
 import ShowTripsAdmin from '../components/ShowTripsAdmin'
+import { PageTitle } from '../styled'
 
 
 export default function AdminHome() {
@@ -48,18 +49,9 @@ export default function AdminHome() {
         }
     }
 
-    const logout = () => {
-
-        window.localStorage.removeItem("token")
-        history.replace("/login")
-    }
-
     return (
         <div>
-            <h1>Página de Administrador</h1>
-            <button onClick={() => goToHome(history)}>Voltar</button>
-            <button onClick={() => goToCreateTrip(history)}>Criar Viagem</button>
-            <button onClick={logout}>Logout</button>
+            <PageTitle>Página de Administrador</PageTitle>
             <ShowTripsAdmin trips={trips} history={history} deleteTrip={deleteTrip}/>
         </div>
     )

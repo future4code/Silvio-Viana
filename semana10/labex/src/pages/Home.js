@@ -1,5 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import { goToAdminHome, goToListTrips } from '../routes/coordinator'
+import { HomeBox, PageTitle } from '../styled'
 
 
 export default function Home() {
@@ -7,10 +8,9 @@ export default function Home() {
     const history = useHistory()
     
     return (
-        <div>
-            <h1>Home</h1>
-            <button onClick={() => goToListTrips(history)}>Ver Viagens</button>
-            <button onClick={() => goToAdminHome(history)}>Área Administrativa</button>
-        </div>
+        <HomeBox>
+            <PageTitle>Home</PageTitle>
+            <h2>Bem-Vindo a LabeX, temos viagens a todos os locais do Sistema Solar</h2>
+        </HomeBox>
     )
 }

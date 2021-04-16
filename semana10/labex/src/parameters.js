@@ -31,6 +31,7 @@ export const dataMinima = () => {
     //Não conseguir fazer o min do date funcionar por meio de uma variável
 }
 
+export const listaPlanetas = ["Mercúrio", "Vênus", "Lua", "Marte", "Júpiter", "Saturno", "Urano", "Netuno", "Plutão"]
 // fonte: https://github.com/juliolvfilho/lista-paises
 export const listaPaises = [
     {

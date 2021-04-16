@@ -25,3 +25,8 @@ export const goToCreateTrip = (history) => {
 export const goToTripDetails = (history, id) => {
     history.push(`/admin/trips/${id}`)
 }
+
+export const goToLogout = (history) => {
+    window.localStorage.removeItem("token")
+    history.replace("/login")
+}

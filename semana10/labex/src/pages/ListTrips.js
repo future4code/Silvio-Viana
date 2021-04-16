@@ -4,6 +4,7 @@ import { goToHome, goToApplicationForm } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
 import axios from 'axios'
 import ShowTrips from '../components/ShowTrips'
+import { PageTitle } from '../styled'
 
 
 export default function ListTrips() {
@@ -29,9 +30,7 @@ export default function ListTrips() {
     
     return (
         <div>
-            <h1>Lista de Viagens</h1>
-            <button onClick={() => goToHome(history)}>Voltar</button>
-            <button onClick={() => goToApplicationForm(history)}>Inscrever-se</button>
+            <PageTitle>Lista de Viagens</PageTitle>
             <ShowTrips trips={trips}/>
         </div>
     )

@@ -7,7 +7,7 @@ import axios from 'axios'
 import ShowTrips from '../components/ShowTrips'
 import Candidates from '../components/Candidates'
 import Approved from '../components/Approved'
-import  { TripDetailsBox }from '../styled'
+import  { PageTitle, TripDetailsBox }from '../styled'
 
 
 export default function TripDetails() {
@@ -58,8 +58,7 @@ export default function TripDetails() {
     
     return (
         <TripDetailsBox>
-            <h1>Detalhes da Viagem</h1>
-            <button onClick={() => goToAdminHome(history)}>Voltar</button>
+            <PageTitle>Detalhes da Viagem</PageTitle>
 
             <ShowTrips trips={[trip]}/>
 

@@ -4,7 +4,7 @@ import { goToListTrips } from '../routes/coordinator'
 import { applyForm, baseUrl } from '../parameters'
 import axios from 'axios'
 import CandidateForm from '../components/CandidateForm'
-import { CandidateFormBox } from '../styled'
+import { CandidateFormBox, PageTitle } from '../styled'
 
 
 export default function ApplicationForm() {
@@ -59,8 +59,7 @@ export default function ApplicationForm() {
 
     return (
         <CandidateFormBox>
-            <h1>Inscrever-se para uma Viagem</h1>
-            <button onClick={() => goToListTrips(history)}>Voltar</button>
+            <PageTitle>Inscrever-se para uma Viagem</PageTitle>
             <CandidateForm trips={trips} tripValue={tripValue} 
             form={form} onChange={onChange} 
             onChangeTrip={onChangeTrip} applyToTrip={applyToTrip}/>
