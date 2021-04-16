@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const GlobalBox = styled.div`
 overflow-x: hidden;`
 export const HomeBox = styled.div`
-min-height: 72vh;
+min-height: 75vh;
 text-align: center;
 
 h2 {
@@ -55,7 +55,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 position: relative;
-min-height: 75.5vh;`
+min-height: 78.5vh;`
 
 export const LoginFormCard = styled.form`
 display: flex;
@@ -144,7 +144,8 @@ export const CreateFormBox = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 0px 0px 20px 0px;`
+padding: 0px 0px 20px 0px;
+min-height: 75vh;`
 
 export const CreateFormCard = styled.form`
 display: flex;
