@@ -11,5 +11,6 @@ export default function ShowTripsAdmin(props) {
                     <button onClick={() => props.deleteTrip(trip.id)}>Apagar</button>
                     </AdminTripCard>
             })}
+            {props.trips.length === 0 && <h1>Não Há Viagens Disponíveis</h1>}
         </AdminTripBox>)
 }

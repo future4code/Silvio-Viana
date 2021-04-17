@@ -1,11 +1,7 @@
-import { useHistory } from 'react-router-dom'
-import { goToAdminHome, goToListTrips } from '../routes/coordinator'
 import { HomeBox, PageTitle } from '../styled'
 
 
 export default function Home() {
-
-    const history = useHistory()
     
     return (
         <HomeBox>

@@ -13,20 +13,21 @@ h2 {
 export const TripsBox = styled.div`
 display: flex;
 flex-wrap: wrap;
-justify-content: center;`
+justify-content: center;
+min-height: 74vh;`
 
 export const TripCard = styled.div`
 border: 1px solid black;
 padding: 10px 15px;
 margin: 10px;
 width: 350px;
-min-height: 200px;`
+height: 250px;`
 
 export const CandidateFormBox = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-padding: 0px 0px 20px 0px;`
+height: 85vh;`
 
 export const CandidateFormCard = styled.form`
 display: flex;
@@ -93,17 +94,23 @@ width: 600px;
 display: flex;
 justify-content: space-between;
 align-items: center;
-height: 100px;
+height: 50px;
+cursor: pointer;
 
 button {
     width: 100px;
     font-size: 24px;
+}
+
+&:hover {
+    background-color: rgb(222, 222, 222);
 }`
 
 export const TripDetailsBox = styled.div`
 display: flex;
 flex-direction: column;
-align-items: center;`
+align-items: center;
+min-height: 80vh;`
 
 export const CandidatesBox = styled.div`
 display: flex;
@@ -192,8 +199,8 @@ export const NavButtons = styled.div`
 button {
     font-size: 25px;
     padding: 10px;
-    margin: 0px 10px;
-    width: 200px;
+    margin: 10px;
+    width: 170px;
 }
 `
 

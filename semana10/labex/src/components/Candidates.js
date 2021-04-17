@@ -18,5 +18,6 @@ export default function Candidates(props) {
                             </DecideCandidate>
                         </CandidateCard>
             })}
+            {props.candidates.length === 0 && <h2>Nenhum</h2>}
         </CandidatesBox>)
 }

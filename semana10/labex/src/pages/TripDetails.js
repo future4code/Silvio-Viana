@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
-import { goToAdminHome, goToTripDetails } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'
@@ -8,13 +6,13 @@ import ShowTrips from '../components/ShowTrips'
 import Candidates from '../components/Candidates'
 import Approved from '../components/Approved'
 import  { PageTitle, TripDetailsBox }from '../styled'
+import { useParams } from 'react-router'
 
 
 export default function TripDetails() {
 
     useProtectedPage()
 
-    const history = useHistory()
     const params = useParams()
     const [trip, setTrip] = useState({})
     const [loading, setLoading] = useState(true)

@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
-import { goToListTrips } from '../routes/coordinator'
 import { applyForm, baseUrl } from '../parameters'
 import axios from 'axios'
 import CandidateForm from '../components/CandidateForm'
@@ -9,7 +7,6 @@ import { CandidateFormBox, PageTitle } from '../styled'
 
 export default function ApplicationForm() {
     
-    const history = useHistory()
     const [trips, setTrips] = useState([])
     const [tripValue, setTripValue] = useState("")
     const [tripId, setTripId] = useState("")

@@ -8,5 +8,6 @@ export default function Approved(props) {
             {props.approved.map((candidate) => {
                 return <ApprovedCard>{candidate.name}</ApprovedCard>
             })}
+            {props.approved.length === 0 && <h2>Nenhum</h2>}
         </ApprovedBox>)
 }

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import { goToCreateTrip, goToHome } from '../routes/coordinator'
 import { baseUrl } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'

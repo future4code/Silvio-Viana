@@ -15,5 +15,6 @@ export default function ShowTrips(props) {
                     </TripCard>
                 )
             })}
+            {props.trips.length === 0 && <h2>Não Há Viagens Disponíveis</h2>}
         </TripsBox>)
 }

@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import { goToAdminHome } from '../routes/coordinator'
 import { baseUrl, createForm } from '../parameters'
 import { useProtectedPage } from '../customHooks'
 import axios from 'axios'
@@ -12,7 +10,6 @@ export default function CreateTrip() {
 
     useProtectedPage()
 
-    const history = useHistory()
     const [form, setForm] = useState(createForm)
 
     const onChange = (event) => {

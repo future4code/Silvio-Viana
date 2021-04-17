@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
-import { goToAdminHome, goToHome } from '../routes/coordinator'
+import { goToAdminHome } from '../routes/coordinator'
 import { baseUrl, loginForm } from '../parameters'
 import axios from 'axios'
 import LoginForm from '../components/LoginForm'
