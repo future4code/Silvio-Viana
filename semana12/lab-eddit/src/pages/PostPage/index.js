@@ -1,8 +1,11 @@
 import { useHistory, useParams } from "react-router"
-import { goToLogin, goToCadastro, goToFeed, goToPost } from "../../routes/coordinator"
+import { useProtectPage } from "../../hooks/useProtectedPage"
+import { goToFeed, goToLogout } from "../../routes/coordinator"
 
 
 export default function PostPage() {
+
+    useProtectPage()
 
     const history = useHistory()
     const postId = useParams().id
@@ -10,9 +13,7 @@ export default function PostPage() {
     return <div>
         <h1>PostPage</h1>
         <h1>{postId}</h1>
-        <button onClick={() => goToLogin(history)}>Login</button>
-        <button onClick={() => goToCadastro(history)}>Cadastro</button>
         <button onClick={() => goToFeed(history)}>Feed</button>
-        <button onClick={() => goToPost(history, "teste")}>Post</button>
+        <button onClick={() => goToLogout(history)}>Logout</button>
     </div>
 }
