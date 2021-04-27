@@ -10,9 +10,12 @@ export default function PostPage() {
 
     useProtectPage()
 
+    const formDefault = {text: ""}
+
     const history = useHistory()
     const postId = useParams().id
     const [post, setPost] = useState({})
+    const [form, setForm] = useState(formDefault)
     const [loading, setLoading] = useState(true)
 
 
@@ -34,12 +37,37 @@ export default function PostPage() {
         }
     }
     
+    const onChange = (event) => {
+        const {name, value} = event.target
+        setForm({...form, [name]: value})
+     }
+  
+    const createComment = async (event) => {
+
+        event.preventDefault()
+
+        const headers = {headers: {Authorization: window.localStorage.getItem("token")}}
+
+        try {
+            await axios.post(`${baseUrl}/posts/${postId}/comment`, form, headers)
+            window.alert("Comentário Criado com Sucesso!")
+            getPostDetails()
+        }
+        catch(error) {
+            console.log(error)
+        }
+    }
+
     return <div>
         <h1>PostPage</h1>
         <button onClick={() => goToFeed(history)}>Feed</button>
         <button onClick={() => goToLogout(history)}>Logout</button>
         {!loading && <h1>{post.title}</h1>}
         {!loading && <p>{post.text}</p>}
+        <form onSubmit={createComment}>
+            <input name="text" type="text" onChange={onChange} placeholder="text" required/>
+            <button>Comentar</button>
+        </form>
         {!loading && post.comments.map((comment) => {
             return <div key={comment.id}>
                 <h1>{comment.username}: {comment.text}</h1><hr/>
