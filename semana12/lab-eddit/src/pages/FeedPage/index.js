@@ -4,6 +4,10 @@ import { useHistory } from "react-router"
 import { useProtectPage } from "../../hooks/useProtectedPage"
 import { goToPost, goToLogout } from "../../routes/coordinator"
 import { baseUrl } from "../../parameters"
+import  ThumbUpWhite from '../../static/ThumbUpWhite.svg'
+import  ThumbUpBlack from '../../static/ThumbUpBlack.svg'
+import  ThumbDownWhite from '../../static/ThumbDownWhite.svg'
+import  ThumbDownBlack from '../../static/ThumbDownBlack.svg'
 
 
 export default function FeedPage() {
@@ -54,10 +58,22 @@ export default function FeedPage() {
             console.log(error)
         }
     }
+
+    const votePost = async (postId, direction) => {
+
+        const headers = {headers: {Authorization: window.localStorage.getItem("token")}}
+
+        try {
+            await axios.put(`${baseUrl}/posts/${postId}/vote`, {direction}, headers)
+            getPosts()
+        }
+        catch (error) {
+            console.log(error)
+        }
+    }
     
     return <div>
         <h1>FeedPage</h1>
-        <button onClick={() => goToPost(history, "teste")}>Post</button>
         <button onClick={() => goToLogout(history)}>Logout</button>
         <form onSubmit={createPost}>
             <input name="title" type="text" onChange={onChange} placeholder="title" required/>
@@ -65,12 +81,18 @@ export default function FeedPage() {
             <button>Postar</button>
         </form>
         {!loading && posts.map((post) => {
-            return <div key={post.id} onClick={() => goToPost(history, post.id)}>
-                    <h1>{post.title}</h1>
-                    <p>{post.text}</p>
+            return <div key={post.id}>
                     <p>{post.username}</p>
-                    <p>Votos: {post.votesCount} </p>
-                    <p>Comentários: {post.commentsCount} </p><hr/>
+                    <div onClick={() => goToPost(history, post.id)}>
+                        <h1>{post.title}</h1>
+                        <p>{post.text}</p>
+                    </div>
+                    <p>{post.commentsCount} comentários</p>
+                    <p>
+                        {post.userVoteDirection === 1 ? <img src={ThumbUpBlack} onClick={() => votePost(post.id, 0)}/> : <img src={ThumbUpWhite} onClick={() => votePost(post.id, 1)}/>}
+                            {post.votesCount}
+                        {post.userVoteDirection === -1 ? <img src={ThumbDownBlack} onClick={() => votePost(post.id, 0)}/> : <img src={ThumbDownWhite} onClick={() => votePost(post.id, -1)}/>}
+                    </p><hr/>
                 </div>
         })}
     </div>
