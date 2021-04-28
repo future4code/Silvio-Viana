@@ -34,13 +34,13 @@ export default function LoginPage() {
     }
     
     return <div>
-        <h1>LoginPage</h1>
+        <h1>Login</h1>
 
+        <button onClick={() => goToCadastro(history)}>Cadastro</button>
         <form onSubmit={logar}>
             <input name="email" type="email" onChange={onChange} placeholder="email" required/>
             <input name="password" type="password" onChange={onChange} placeholder="password" required/>
             <button>Entrar</button>
         </form>
-        <button onClick={() => goToCadastro(history)}>Cadastro</button>
     </div>
 }

@@ -57,6 +57,7 @@ export default function PostPage() {
             await axios.post(`${baseUrl}/posts/${postId}/comment`, form, headers)
             window.alert("Comentário Criado com Sucesso!")
             getPostDetails()
+            setForm(formDefault)
         }
         catch(error) {
             console.log(error)
@@ -90,9 +91,11 @@ export default function PostPage() {
     }
 
     return <div>
-        <h1>PostPage</h1>
+        <h1>Post</h1>
         <button onClick={() => goToFeed(history)}>Feed</button>
-        <button onClick={() => goToLogout(history)}>Logout</button>
+        <button onClick={() => goToLogout(history)}>Logout</button><hr/>
+        {loading && <h1>Carregando...</h1>}
+
         {!loading && <h1>{post.title}</h1>}
         {!loading && <p>{post.text}</p>}
         {!loading &&  <p>
@@ -100,10 +103,13 @@ export default function PostPage() {
                             {post.votesCount}
                         {post.userVoteDirection === -1 ? <img src={ThumbDownBlack} onClick={() => votePost(post.id, 0)}/> : <img src={ThumbDownWhite} onClick={() => votePost(post.id, -1)}/>}
                     </p>}
-        <form onSubmit={createComment}>
-            <input name="text" type="text" onChange={onChange} placeholder="text" required/>
-            <button>Comentar</button>
-        </form>
+        <hr/>
+
+        {!loading && <form onSubmit={createComment}>
+            <input name="text" type="text" value={form.text} onChange={onChange} placeholder="Comentário" required/>
+            <button>Comentar</button><hr/>
+        </form>}
+
         {!loading && post.comments.map((comment) => {
             return <div key={comment.id}>
                 <h1>{comment.username}: {comment.text}</h1>

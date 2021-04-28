@@ -53,6 +53,8 @@ export default function FeedPage() {
         try {
             await axios.post(`${baseUrl}/posts`, form, headers)
             window.alert("Post Criado com Sucesso!")
+            getPosts()
+            setForm(formDefault)
         }
         catch(error) {
             console.log(error)
@@ -73,16 +75,20 @@ export default function FeedPage() {
     }
     
     return <div>
-        <h1>FeedPage</h1>
-        <button onClick={() => goToLogout(history)}>Logout</button>
-        <form onSubmit={createPost}>
-            <input name="title" type="text" onChange={onChange} placeholder="title" required/>
-            <input name="text" type="text" onChange={onChange} placeholder="text" required/>
-            <button>Postar</button>
-        </form>
+        <h1>Feed</h1>
+        <button onClick={() => goToLogout(history)}>Logout</button><hr/>
+
+        {loading && <h1>Carregando...</h1>}
+
+        {!loading && <form onSubmit={createPost}>
+            <input name="title" type="text" value={form.title} onChange={onChange} placeholder="Título" required/>
+            <input name="text" type="text" value={form.text} onChange={onChange} placeholder="Texto" required/>
+            <button>Postar</button><hr/>
+        </form>}
+
         {!loading && posts.map((post) => {
             return <div key={post.id}>
-                    <p>{post.username}</p>
+                    <h3>{post.username}</h3>
                     <div onClick={() => goToPost(history, post.id)}>
                         <h1>{post.title}</h1>
                         <p>{post.text}</p>

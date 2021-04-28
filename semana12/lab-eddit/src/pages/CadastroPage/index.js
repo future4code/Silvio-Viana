@@ -25,7 +25,6 @@ export default function CadastroPage() {
         
         try {
             const response = await axios.post(`${baseUrl}/signup`, form)
-            console.log(response)
             window.localStorage.setItem("token", response.data.token)
             goToFeed(history)
         }
@@ -35,7 +34,7 @@ export default function CadastroPage() {
     }
 
     return <div>
-        <h1>CadastroPage</h1>
+        <h1>Cadastro</h1>
         <button onClick={() => goToLogin(history)}>Login</button>
 
         <form onSubmit={cadastrar}>
