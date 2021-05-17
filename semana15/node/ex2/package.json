@@ -1,0 +1,11 @@
+{
+  "name": "ex2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ex2.js",
+  "scripts": {
+    "start": "node ex2.js"
+  },
+  "author": "\"Silvio Viana\"",
+  "license": "ISC"
+}
