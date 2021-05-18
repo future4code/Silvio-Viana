@@ -1,0 +1,11 @@
+{
+  "name": "ex3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ex3.js",
+  "scripts": {
+    "start": "node ex3.js"
+  },
+  "author": "\"Silvio Viana\"",
+  "license": "ISC"
+}
