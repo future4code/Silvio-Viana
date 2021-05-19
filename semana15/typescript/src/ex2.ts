@@ -1,8 +1,8 @@
 //a.
 // Array e object
-function obterEstatisticas (numeros: Array<number>): object {
+function obterEstatisticas (numeros: number[]): object {
 
-    const numerosOrdenados: Array<number> = numeros.sort((a, b) => {return a - b})
+    const numerosOrdenados: number[] = numeros.sort((a, b) => {return a - b})
 
     let soma: number = 0
 
@@ -18,11 +18,9 @@ function obterEstatisticas (numeros: Array<number>): object {
     return estatisticas
 }
 
-console.log(obterEstatisticas([1, 5, 7, 10, 100, -50, 300]))
-
 //b. soma é tipo number
 
 //c.
-type amostra = {numeros: Array<number>, funcao : object}
-const testando: amostra = {numeros: [1, 5, 7, 10, 100, -50, 300], funcao: obterEstatisticas([1, 5, 7, 10, 100, -50, 300])}
-console.log(testando)
+type amostra = {numeros: number[], funcao : (numeros: number[]) => object}
+const testando: amostra = {numeros: [1, 5, 7, 10, 100, -50, 300], funcao: obterEstatisticas}
+console.log(testando.funcao(testando.numeros))

@@ -42,5 +42,3 @@ function lucroRestaurante () : void {
 }
 
 lucroRestaurante()
-
-// tsc && node ex8.js
