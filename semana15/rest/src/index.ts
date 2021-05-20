@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express'
 import cors from 'cors'
-import { type } from 'os'
+
 
 const app = express()
 
@@ -112,11 +112,44 @@ app.get("/user/:name", (req: Request, res: Response) => {
 //a. Nada
 //b. Não, prefiro usar put quando modifica algo já existente
 
-app.put("/users/add", (req: Request, res: Response) => {
-    
+app.post("/users/add", (req: Request, res: Response) => {
+
     const body = req.body
     users.push(body)
     res.status(200).send("Sucess")
+})
+
+// Exercício 5
+app.put("/users/change-last", (req: Request, res: Response) => {
+
+    const newName: string = users[users.length - 1].name + "-ALTERADO"
+    users[users.length - 1] = {...users[users.length -1], name: newName}
+    res.status(200).send()
+})
+
+// Exercício 6
+app.patch("/users/rechange-last", (req: Request, res: Response) => {
+
+    const newName: string = users[users.length - 1].name + "-REALTERADO"
+    users[users.length - 1] = {...users[users.length -1], name: newName}
+    res.status(200).send()
+})
+
+// Exercício 7
+app.delete("/users/delete/:id", (req: Request, res: Response) => {
+
+    try {
+
+        const id = Number(req.params.id)
+        if (!users.find(user => user.id === id)) { throw new Error("Not Found")}
+
+        users = users.filter(user => user.id !== id)
+        res.status(200).send("Removed Sucessfuly")
+    }
+    catch (error) {
+
+        res.status(401).send(error.message)
+    }
 })
 
 app.listen(3005, () => {
