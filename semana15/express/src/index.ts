@@ -1,6 +1,6 @@
 import express, {Request, Response} from 'express'
 import cors from 'cors'
-import {countries as countriesDefault, country} from './countries'
+import {countries as countriesDefault, country, CONTINENTS} from './countries'
 
 let countries = countriesDefault
 
@@ -69,6 +69,64 @@ app.put("/countries/edit/:id", (req: Request, res: Response) => {
         res.status(404).send("Not Found")
     }
     res.status(200).send("List Changed")
+})
+
+//Endpoit 5
+app.delete("/countries/:id", (req: Request, res: Response) => {
+
+    const authorization = req.headers.authorization
+    const id: number = Number(req.params.id)
+    if (!authorization) { res.status(401).send("Missing Authorization") ; return }
+    if (authorization.length < 10) { res.status(401).send("Authorization Invalid") ; return }
+    let found: boolean = false
+    
+    countries = countries.filter(country => {
+
+        if (country.id === id) {
+            found = true
+            return false
+        }
+
+        return true
+    })
+
+    if (!found) { res.status(404).send("Not Found")}
+    res.status(200).send("Country Deleted")
+})
+
+//Endpoint 6
+app.post("/countries/create", (req: Request, res: Response) => {
+
+    const authorization = req.headers.authorization
+    const name = req.body.name
+    const capital = req.body.capital
+    const continent = req.body.continent
+    const id = new Date().getTime()
+    let continentFound: boolean = false
+
+    if (!authorization ||authorization.length < 10) { res.status(401).send("Invalid Authorization") ; return }
+    if (!name || !capital || !continent) { res.status(401).send("Invalid Body") ; return }
+    for (let checkContinent of Object.values(CONTINENTS)) {
+        if (checkContinent === continent) { continentFound = true}
+    }
+    if (!continentFound) { res.status(401).send("Invalid Continent") ; return }
+    if(countries.find(country => { return country.name.toLowerCase() === name.toLowerCase() })) { 
+        res.status(401).send("Country Alredy Exist") 
+        return
+    }
+
+    const newCountry: country = {id, name, capital, continent}
+    countries.push(newCountry)
+
+    res.status(200).send({
+        "message": "Success!",
+        "country":{
+           "id": id,
+           "name": name,
+           "capital": capital,
+           "continent":continent
+        }
+    })
 })
 
 
