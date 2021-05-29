@@ -1,3 +1,5 @@
+import connection from "./connection"
+
 export function formatoValidoData (data: string) : boolean {
     
     //Check simples, 31 de Fevereiro é uma data aceita.
@@ -28,4 +30,38 @@ export const formatarDataToString = (date: string) : string => {
     const ano: number = data.getFullYear()
 
     return `${dia}/${mes}/${ano}`
+}
+
+export const userIdExiste = async (userId: number) : Promise<boolean> => {
+
+    const result = await connection.raw(`SELECT * FROM Users WHERE id = ${userId}`)
+    return result[0].length > 0
+}
+
+export const nickNameExiste = async (userNick: string) : Promise<boolean> => {
+    
+    const result = await connection.raw(`SELECT * FROM Users WHERE nickname = "${userNick}"`)
+    return result[0].length > 0
+}
+
+export const emailExiste = async (userEmail: string) : Promise<boolean> => {
+    
+    const result = await connection.raw(`SELECT * FROM Users WHERE email = "${userEmail}"`)
+    return result[0].length > 0
+}
+
+export const TaskIdExiste = async (taskId: number) : Promise<boolean> => {
+    
+    const result = await connection.raw(`SELECT * FROM Tasks WHERE id = ${taskId}`)
+    return result[0].length > 0
+}
+
+export const varchar255 = (string: string) : boolean => {
+
+    return String(string).length <= 255
+}
+
+export const numeroGigante = (number: number) : boolean => {
+
+    return number > 1000000000
 }
