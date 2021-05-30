@@ -124,6 +124,8 @@
 
 ## - Deletar usuário
 ### DELETE "/user/:id"
+* Atenção
+* 	Ao apagar o usuário, todas as tarefas criadas por ele também serão apagadas
 * Params
 
         id (Id do usuário) = INT
