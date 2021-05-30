@@ -90,9 +90,9 @@ app.get("/user/:id", async (req: Request, res: Response) => {
         if (numeroGigante(id)) { throw new Error ("O id fornecido é um número muito grande") }
         if (!await userIdExiste(id)) { throw new Error("Usuário não encontrado") }
 
-        const result = await connection.raw(`SELECT id, name FROM Users WHERE id = ${id}`)
+        const result = await connection.raw(`SELECT id, nickname FROM Users WHERE id = ${id}`)
 
-        res.status(200).send({ user: result[0][0] })
+        res.status(200).send(result[0][0])
     }
     catch(err) {
 
@@ -222,7 +222,7 @@ app.get("/task/delayed", async (req: Request, res: Response) => {
             result[0][i].limitDate = formatarDataToString(result[0][i].limitDate)
         }
 
-        res.status(200).send({ delayed: result[0] })
+        res.status(200).send({ tasks: result[0] })
     }
     catch (err) {
 
@@ -254,7 +254,7 @@ app.get("/task/:id", async (req: Request, res: Response) => {
         result.responsibleUsers = responsaveis[0]
         result.limitDate = formatarDataToString(result.limitDate)
 
-        res.status(200).send({ task: result })
+        res.status(200).send(result)
     }
     catch (err) {
 
@@ -311,7 +311,7 @@ app.post("/task/responsible", async (req: Request, res: Response) => {
             await connection.raw(`INSERT INTO UserTaskRelation VAlUES (${id}, ${task_id})`)
         }
 
-        res.status(200).send({ message: "Tarefa atribuída com sucesso" })
+        res.status(200).send({ message: "Responsáveis atribuidos a tarefa com sucesso" })
     }
     catch(err) {
 
