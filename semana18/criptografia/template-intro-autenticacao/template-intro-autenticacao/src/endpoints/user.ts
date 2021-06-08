@@ -1,7 +1,7 @@
 import { Request, Response } from 'express'
 import { getData, getUserById } from '../services/functions'
 
-export const profile = async (req: Request, res: Response) : Promise<void> => {
+export const user = async (req: Request, res: Response) : Promise<void> => {
 
     try {
 
@@ -11,9 +11,7 @@ export const profile = async (req: Request, res: Response) : Promise<void> => {
 
         if (!user) { throw new Error("Token Inválido") }
 
-        if (user.role !== "NORMAL") { throw new Error("Unauthorized") }
-
-        res.status(200).send({id: user.id, email: user.email})
+        res.status(200).send({id: user.id, email: user.email, role: user.role})
     }
     catch(err) {
 

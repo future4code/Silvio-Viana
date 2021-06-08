@@ -41,6 +41,11 @@ export const createUser = async (id: string, email: string, password: string, ro
     await connection.raw(`INSERT INTO to_do_list_users VALUES ("${id}", "${email}", "${password}", "${role}")`)
 }
 
+export const deleteUser = async (id: string) : Promise<void> => {
+
+    await connection.raw(`DELETE FROM to_do_list_users WHERE id = "${id}"`)
+}
+
 export const generateHash = async (password: string) : Promise<string> => {
 
     const salt = await bcrypt.genSalt(12)
