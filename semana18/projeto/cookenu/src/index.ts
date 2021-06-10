@@ -4,9 +4,11 @@ import { login } from "./endpoints/login"
 import { searchProfile } from "./endpoints/searchProfile"
 import { signup } from "./endpoints/signup"
 import { userProfile } from "./endpoints/userProfile"
+import { searchRecipe } from "./endpoints/searchRecipe"
 
 app.post('/signup', signup)
 app.post('/login', login)
 app.get('/user/profile', userProfile)
 app.get('/user/:id', searchProfile)
 app.post('/recipe', recipe)
+app.get('/recipe/:id', searchRecipe)

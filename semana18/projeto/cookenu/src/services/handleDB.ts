@@ -27,3 +27,12 @@ export const createRecipe = async (recipe: recipeCreator) : Promise<void> => {
     VALUES ("${recipe.id}", "${recipe.title}", "${recipe.description}", 
     "${recipe.instruction}", CURDATE(), "${recipe.creatorId}")`)
 }
+
+export const searchRecipeById = async (id: string) : Promise<any> => {
+
+    const result = await connection.raw(`SELECT id, title, description, instruction,
+    DATE_FORMAT(createdAt,'%d/%m/%Y') AS createdAt, creator_id
+    FROM Cookenu_Recipes WHERE id = "${id}"`)
+
+    return result[0][0]
+}

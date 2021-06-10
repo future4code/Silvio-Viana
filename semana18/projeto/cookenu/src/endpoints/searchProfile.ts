@@ -9,7 +9,7 @@ export const searchProfile = async (req: Request, res: Response) : Promise<void>
         const id: string = req.params.id
         const token = req.headers.authorization as string
 
-        await getDataFromToken(token)
+        getDataFromToken(token)
 
         const user = await searchUserById(id)
 
