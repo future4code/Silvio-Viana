@@ -1,4 +1,4 @@
 import app from "./app"
-import { polo } from "./endpoints/polo"
+import { signup } from "./endpoints/signup"
 
-app.get('/marco', polo)
+app.post('/signup', signup)
