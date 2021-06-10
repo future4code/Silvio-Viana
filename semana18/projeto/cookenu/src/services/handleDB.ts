@@ -1,5 +1,5 @@
 import connection from '../connection'
-import { userCreator } from '../types'
+import { recipeCreator, userCreator } from '../types'
 
 export const createUser = async (user: userCreator) : Promise<void> => {
 
@@ -19,4 +19,11 @@ export const searchUserById = async (id: string) : Promise<any> => {
     const result = await connection.raw(`SELECT * FROM Cookenu_Users WHERE id = "${id}"`)
 
     return result[0][0]
+}
+
+export const createRecipe = async (recipe: recipeCreator) : Promise<void> => {
+
+    await connection.raw(`INSERT INTO Cookenu_Recipes
+    VALUES ("${recipe.id}", "${recipe.title}", "${recipe.description}", 
+    "${recipe.instruction}", CURDATE(), "${recipe.creatorId}")`)
 }
