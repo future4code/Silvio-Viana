@@ -32,6 +32,18 @@ export const getFeed = async (userId: string) : Promise<any> => {
     return result[0]
 }
 
+export const deleteUser = async (userId: string) : Promise<void> => {
+
+    await connection.raw(`DELETE FROM Cookenu_Follows 
+    WHERE follower_id = "${userId}" OR followed_id = "${userId}"`)
+
+    await connection.raw(`DELETE FROM Cookenu_Recipes
+    WHERE creator_id = "${userId}"`)
+
+    await connection.raw(`DELETE FROM Cookenu_Users 
+    WHERE id = "${userId}"`)
+}
+
 export const createRecipe = async (recipe: recipeCreator) : Promise<void> => {
 
     await connection.raw(`INSERT INTO Cookenu_Recipes

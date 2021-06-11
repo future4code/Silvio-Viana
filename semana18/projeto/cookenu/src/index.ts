@@ -10,6 +10,7 @@ import { unfollow } from "./endpoints/unfollow"
 import { feed } from "./endpoints/feed"
 import { recipeEdit } from "./endpoints/recipeEdit"
 import { recipeDelete } from "./endpoints/recipeDelete"
+import { profileDelete } from "./endpoints/profileDelete"
 
 app.post('/signup', signup)
 app.post('/login', login)
@@ -19,6 +20,7 @@ app.get('/user/feed', feed)
 app.get('/user/:id', searchProfile)
 app.post('/user/follow', follow)
 app.post('/user/unfollow', unfollow)
+app.delete('/user/:id', profileDelete)
 
 app.get('/recipe/:id', searchRecipe)
 app.post('/recipe', recipe)
