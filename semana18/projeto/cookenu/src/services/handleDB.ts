@@ -21,6 +21,17 @@ export const searchUserById = async (id: string) : Promise<any> => {
     return result[0][0]
 }
 
+export const getFeed = async (userId: string) : Promise<any> => {
+
+    const result = await connection.raw(`SELECT r.id, r.title, r.description, r.instruction,
+    DATE_FORMAT(r.createdAt,'%d/%m/%Y') AS createdAt, u.id AS creatorId, u.name as creatorName
+    FROM Cookenu_Recipes r JOIN Cookenu_Users u ON r.creator_id = u.id
+    WHERE creator_id IN (SELECT followed_id FROM Cookenu_Follows WHERE follower_id = "${userId}")
+    ORDER BY r.createdAt`)
+
+    return result[0]
+}
+
 export const createRecipe = async (recipe: recipeCreator) : Promise<void> => {
 
     await connection.raw(`INSERT INTO Cookenu_Recipes
