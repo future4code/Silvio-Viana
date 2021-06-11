@@ -55,6 +55,11 @@ export const modifyRecipe = async (recipe: recipeCreator) : Promise<void> => {
     WHERE id = "${recipe.id}"`)
 }
 
+export const deleteRecipe = async (recipeId: string) : Promise<void> => {
+
+    await connection.raw(`DELETE FROM Cookenu_Recipes WHERE id = "${recipeId}"`)
+}
+
 export const createFollowRelation = async (followerId: string, followedId: string) : Promise<void> => {
 
     await connection.raw(`INSERT INTO Cookenu_Follows VALUES ("${followerId}", "${followedId}")`)
