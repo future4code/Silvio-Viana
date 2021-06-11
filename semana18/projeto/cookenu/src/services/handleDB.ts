@@ -36,3 +36,17 @@ export const searchRecipeById = async (id: string) : Promise<any> => {
 
     return result[0][0]
 }
+
+export const createFollowRelation = async (followerId: string, followedId: string) : Promise<void> => {
+
+    await connection.raw(`INSERT INTO Cookenu_Follows VALUES ("${followerId}", "${followedId}")`)
+}
+
+export const followRelationExists = async (followerId: string, followedId: string) : Promise<boolean> => {
+
+    const result = await connection.raw(`SELECT * FROM Cookenu_Follows 
+    WHERE follower_id = "${followerId}" AND followed_id = "${followedId}"`)
+
+    if (result[0][0]) { return true }
+    else { return false }
+}

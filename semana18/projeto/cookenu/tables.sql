@@ -14,3 +14,10 @@ createdAt DATE NOT NULL,
 creator_id VARCHAR(64),
 FOREIGN KEY (creator_id) REFERENCES Cookenu_Users(id)
 );
+
+CREATE TABLE Cookenu_Follows (
+follower_id VARCHAR(64),
+followed_id VARCHAR(64),
+FOREIGN KEY (follower_id) REFERENCES Cookenu_Users(id),
+FOREIGN KEY (followed_id) REFERENCES Cookenu_Users(id)
+);
