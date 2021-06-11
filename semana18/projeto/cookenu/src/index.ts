@@ -8,6 +8,7 @@ import { searchRecipe } from "./endpoints/searchRecipe"
 import { follow } from "./endpoints/follow"
 import { unfollow } from "./endpoints/unfollow"
 import { feed } from "./endpoints/feed"
+import { recipeEdit } from "./endpoints/recipeEdit"
 
 app.post('/signup', signup)
 app.post('/login', login)
@@ -20,3 +21,4 @@ app.post('/user/unfollow', unfollow)
 
 app.get('/recipe/:id', searchRecipe)
 app.post('/recipe', recipe)
+app.put('/recipe/edit', recipeEdit)

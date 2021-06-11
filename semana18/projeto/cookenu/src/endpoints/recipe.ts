@@ -11,7 +11,7 @@ export const recipe = async (req: Request, res: Response) : Promise<void> => {
         const token = req.headers.authorization as string
         const creatorId = getDataFromToken(token).id
 
-        const {title, description, instruction } = req.body
+        const {title, description, instruction} = req.body
 
         if (!title || !description || !instruction) 
         { throw new Error("Você deve fornecer: title, description e instruction") }

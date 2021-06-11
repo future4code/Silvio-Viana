@@ -48,6 +48,13 @@ export const searchRecipeById = async (id: string) : Promise<any> => {
     return result[0][0]
 }
 
+export const modifyRecipe = async (recipe: recipeCreator) : Promise<void> => {
+
+    await connection.raw(`UPDATE Cookenu_Recipes 
+    SET title = "${recipe.title}", description = "${recipe.description}", instruction = "${recipe.instruction}"
+    WHERE id = "${recipe.id}"`)
+}
+
 export const createFollowRelation = async (followerId: string, followedId: string) : Promise<void> => {
 
     await connection.raw(`INSERT INTO Cookenu_Follows VALUES ("${followerId}", "${followedId}")`)
