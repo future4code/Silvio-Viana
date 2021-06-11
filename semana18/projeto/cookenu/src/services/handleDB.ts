@@ -4,7 +4,7 @@ import { recipeCreator, userCreator } from '../types'
 export const createUser = async (user: userCreator) : Promise<void> => {
 
     await connection.raw(`INSERT INTO Cookenu_Users 
-    VALUES ("${user.id}", "${user.name}", "${user.email}", "${user.password}")`)
+    VALUES ("${user.id}", "${user.name}", "${user.email}", "${user.role}", "${user.password}")`)
 }
 
 export const searchUserByEmail = async (email: string) : Promise<any> => {

@@ -16,7 +16,7 @@ export const login = async (req: Request, res: Response) : Promise<void> => {
         if (!user) { throw new Error("Usuário não encontrado") }
         if (!await checkPassword(password, user.password)) { throw new Error("Senha inválida") }
 
-        res.status(200).send({ token: generateToken(user.id) })
+        res.status(200).send({ token: generateToken(user.id, user.role) })
     }
     catch(err) {
 
