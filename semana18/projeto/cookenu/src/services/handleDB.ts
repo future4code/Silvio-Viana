@@ -50,3 +50,9 @@ export const followRelationExists = async (followerId: string, followedId: strin
     if (result[0][0]) { return true }
     else { return false }
 }
+
+export const removeFollowRelation = async (followerId: string, followedId: string) : Promise<void> => {
+
+    await connection.raw(`DELETE FROM Cookenu_Follows 
+    WHERE follower_id = "${followerId}" AND followed_id = "${followedId}"`)
+}
