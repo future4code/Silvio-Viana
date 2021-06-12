@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
-import { modifyRecipe, searchRecipeById } from '../services/handleDB'
+import { modifyRecipe, searchRecipeById, tokenOwnerExist } from '../services/handleDB'
+import { isText, isVarchar64 } from '../services/handleErrors'
 import { getDataFromToken } from '../services/handleToken'
 import { recipeCreator } from '../types'
 
@@ -11,10 +12,17 @@ export const recipeEdit = async (req: Request, res: Response) : Promise<void> =>
         const userId = getDataFromToken(token).id
         const userRole = getDataFromToken(token).role
 
-        const {recipeId, title, description, instruction} = req.body
+        if (!await tokenOwnerExist(userId)) { throw new Error("Token inválido") }
+
+        const { recipeId, title, description, instruction } = req.body
 
         if (!recipeId || !title || !description || !instruction) 
         { throw new Error("Você deve fornecer: recipeId, title, description e instruction") }
+
+        if (!isVarchar64([recipeId, title, description]))
+        { throw new Error("Esses itens devem ser texto e possuir no máximo 64 caracteres: recipeId, title e description") }
+
+        if (!isText([instruction])) { throw new Error("instruction deve ser um texto") }
 
         const recipe = await searchRecipeById(recipeId)
 

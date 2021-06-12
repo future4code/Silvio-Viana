@@ -1,18 +1,20 @@
 import { Request, Response } from 'express'
-import { getFeed, tokenOwnerExist } from '../services/handleDB'
+import { searchUserById, tokenOwnerExist } from '../services/handleDB'
 import { getDataFromToken } from '../services/handleToken'
 
-
-export const feed = async (req: Request, res: Response) : Promise<void> => {
+export const profile = async (req: Request, res: Response) : Promise<void> => {
 
     try {
 
         const token = req.headers.authorization as string
+
         const userId = getDataFromToken(token).id
 
         if (!await tokenOwnerExist(userId)) { throw new Error("Token inválido") }
 
-        res.status(200).send({ recipes: await getFeed(userId) })
+        const user = await searchUserById(userId)
+
+        res.status(200).send({ id: user.id, name: user.name, email: user.email, recipes: user.recipes })
     }
     catch(err) {
 

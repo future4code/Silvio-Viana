@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { deleteUser, searchUserById } from '../services/handleDB'
+import { deleteUser, searchUserById, tokenOwnerExist } from '../services/handleDB'
 import { getDataFromToken } from '../services/handleToken'
 
 export const profileDelete = async (req: Request, res: Response) : Promise<void> => {
@@ -10,6 +10,7 @@ export const profileDelete = async (req: Request, res: Response) : Promise<void>
         const userId = getDataFromToken(token).id
         const userRole = getDataFromToken(token).role
         
+        if (!await tokenOwnerExist(userId)) { throw new Error("Token inválido") }
 
         const profileId = req.params.id
 

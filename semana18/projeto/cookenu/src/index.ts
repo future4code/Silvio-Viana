@@ -1,10 +1,10 @@
 import app from "./app"
-import { recipe } from "./endpoints/recipe"
+import { recipeCreate } from "./endpoints/recipeCreate"
 import { login } from "./endpoints/login"
-import { searchProfile } from "./endpoints/searchProfile"
+import { profileSearch } from "./endpoints/profileSearch"
 import { signup } from "./endpoints/signup"
-import { userProfile } from "./endpoints/userProfile"
-import { searchRecipe } from "./endpoints/searchRecipe"
+import { profile } from "./endpoints/profile"
+import { recipeSearch } from "./endpoints/recipeSearch"
 import { follow } from "./endpoints/follow"
 import { unfollow } from "./endpoints/unfollow"
 import { feed } from "./endpoints/feed"
@@ -15,14 +15,14 @@ import { profileDelete } from "./endpoints/profileDelete"
 app.post('/signup', signup)
 app.post('/login', login)
 
-app.get('/user/profile', userProfile)
+app.get('/user/profile', profile)
 app.get('/user/feed', feed)
-app.get('/user/:id', searchProfile)
+app.get('/user/:id', profileSearch)
 app.post('/user/follow', follow)
 app.post('/user/unfollow', unfollow)
 app.delete('/user/:id', profileDelete)
 
-app.get('/recipe/:id', searchRecipe)
-app.post('/recipe', recipe)
+app.get('/recipe/:id', recipeSearch)
+app.post('/recipe', recipeCreate)
 app.put('/recipe/edit', recipeEdit)
 app.delete('/recipe/:id', recipeDelete)
