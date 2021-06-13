@@ -23,14 +23,16 @@
 ## - Cadastro
 ### POST "/signup"
 
+* Atenção
+		
+	    Para criar uma conta ADMIN é preciso ter um token de um usuário ADMIN no Authorization
+
 * Body
 
         name = VARCHAR(64)
         email = VARCHAR(64)
         role = ENUM ("NORMAL", "ADMIN")
         password = VARCHAR(64)
-
-        * Para criar ADMIN é preciso ter um token de um usuário ADMIN no Authorization
 
         {
             "name": "maria",
@@ -235,11 +237,16 @@
 
 ## - Deletar perfil
 ### DELETE "/user/:id"
+
+* Atenção
+		
+	    Um usuário normal só pode deletar sua própria conta
+        Um usuário admin pode deletar qualquer conta
+        Ao apagar um usuário, suas receitas também serão apagadas
+
 * Params
 
         id (Id do usuário a ser deletado) = VARCHAR(64)
-        * Um usuário normal só pode deletar sua própria conta 
-        * Um usuário admin pode deletar qualquer conta
 
 * Headers
 
@@ -384,11 +391,15 @@
 
 ## - Deletar receita
 ### DELETE "/recipe/:id"
+
+* Atenção
+		
+	    Um usuário normal só pode deletar sua própria receita
+        Um usuário admin pode deletar qualquer receita
+
 * Params
 
         id (Id da receita) = VARCHAR(64)
-        * Um usuário normal só pode deletar sua própria receita
-        * Um usuário admin pode deletar qualquer receita
 
 * Headers
 
