@@ -3,6 +3,22 @@
 ## Usando essa API um usuário pode criar uma conta, postar suas receitas, seguir outras pessoas para que as receitas delas aparecam no seu feed, entre outras funcionalidades.
 
 ---
+## Funcionalidades
+- Cadastro
+- Login
+- Ver próprio perfil
+- Ver feed
+- Ver perfil
+- Procurar perfil
+- Dar follow em um usuário
+- Dar unfollow em um usuário
+- Deletar perfil
+- Ver receita
+- Procurar receita
+- Criar receita
+- Editar receita
+- Deletar receita
+---
 
 ## - Cadastro
 ### POST "/signup"
