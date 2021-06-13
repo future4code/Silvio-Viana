@@ -35,6 +35,13 @@ export const searchUserById = async (id: string) : Promise<any> => {
     return result[0][0]
 }
 
+export const searchUsersByName = async (name: string) : Promise<any> => {
+
+    const result = await connection.raw(`SELECT id, name, email FROM Cookenu_Users WHERE name LIKE "%${name}%"`)
+
+    return result[0]
+}
+
 export const tokenOwnerExist = async (id: string) : Promise<boolean> => {
 
     const result = await connection.raw(`SELECT * FROM Cookenu_Users WHERE id = "${id}"`)
@@ -81,6 +88,16 @@ export const searchRecipeById = async (id: string) : Promise<any> => {
     FROM Cookenu_Recipes r JOIN Cookenu_Users u ON r.creator_id = u.id WHERE r.id = "${id}"`)
 
     return result[0][0]
+}
+
+export const searchRecipesByTitle = async (title: string) : Promise<any> => {
+
+    const result = await connection.raw(`SELECT r.id, title, r.description, r.instruction,
+    DATE_FORMAT(r.createdAt,'%d/%m/%Y') AS createdAt, u.id AS creatorId, u.name AS creatorName
+    FROM Cookenu_Recipes r JOIN Cookenu_Users u ON r.creator_id = u.id
+    WHERE title LIKE "%${title}%" ORDER BY createdAt`)
+
+    return result[0]
 }
 
 export const modifyRecipe = async (recipe: recipeCreator) : Promise<void> => {
