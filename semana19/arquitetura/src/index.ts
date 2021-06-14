@@ -2,6 +2,7 @@ import express from 'express'
 import knex from 'knex'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import { signup } from './controller/signup'
 
 
 dotenv.config()
@@ -22,9 +23,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-app.get("/", async function(req,res){
-   res.send(await connection.raw('show tables'))
-})
+app.get("/signup", signup)
 
 
 app.listen(3003, () => {
