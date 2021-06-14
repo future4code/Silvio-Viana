@@ -3,6 +3,7 @@ import knex from 'knex'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import { signup } from './controller/signup'
+import { login } from './controller/login'
 
 
 dotenv.config()
@@ -24,6 +25,7 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/signup", signup)
+app.get("/login", login)
 
 
 app.listen(3003, () => {
