@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { signup } from './controller/signup'
 import { login } from './controller/login'
 import { all } from './controller/all'
+import { deleteUser } from './controller/delete'
 
 
 dotenv.config()
@@ -28,6 +29,7 @@ app.use(cors())
 app.get("/signup", signup)
 app.get("/login", login)
 app.get("/all", all)
+app.get("/:id", deleteUser)
 
 
 app.listen(3003, () => {
