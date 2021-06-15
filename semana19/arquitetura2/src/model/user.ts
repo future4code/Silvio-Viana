@@ -25,3 +25,5 @@ export type signupInputDTO = {
    password: string,
    role: USER_ROLES
 }
+
+export type createUserDTO = signupInputDTO & { id: string }

@@ -1,11 +1,11 @@
 import { hash } from "../../services/hashManager";
 import { insertUser } from "../../data/user/insertUser";
-import { signupInputDTO } from "../../model/user";
+import { createUserDTO, signupInputDTO } from "../../model/user";
 import { generateToken } from "../../services/authenticator";
 import { generateId } from "../../services/idGenerator";
 
 export const signupBusiness = async (userData: signupInputDTO):Promise<string> => {
-   
+
    if (
       !userData.name ||
       !userData.nickname ||
@@ -18,7 +18,7 @@ export const signupBusiness = async (userData: signupInputDTO):Promise<string> =
 
    const cypherPassword = await hash(userData.password);
 
-   const newUser = {
+   const newUser: createUserDTO = {
       ...userData,
       password: cypherPassword,
       id: generateId()
