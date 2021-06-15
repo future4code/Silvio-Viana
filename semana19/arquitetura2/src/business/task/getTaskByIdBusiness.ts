@@ -1,9 +1,9 @@
 import { selectTaskById } from "../../data/task/selectTaskById"
+import { getTaskInputSignupDTO } from "../../model/task"
 
-export const getTaskByIdBusiness = async (
-   id: string
-) => {
-   const result = await selectTaskById(id)
+export const getTaskByIdBusiness = async (input: getTaskInputSignupDTO) : Promise<any> => {
+   
+   const result = await selectTaskById(input.id)
 
    if (!result) {
       throw new Error("Tarefa não encontrada")
