@@ -1,9 +1,4 @@
-export interface Fighter {
-    name: string,
-    life: number,
-    strength: number,
-    defense: number
-}
+import { Fighter } from './model/fighter'
 
 export const validateFighter = (figther: Fighter) : boolean => {
 
