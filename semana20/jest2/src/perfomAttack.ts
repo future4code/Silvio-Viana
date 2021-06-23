@@ -1,5 +1,5 @@
 import { Fighter } from './model/fighter'
-import { validateFighter } from './validadeCharacter'
+import { validateFighter } from './validateFigther'
 
 export const perfomAttack1 = (attacker: Fighter, defender: Fighter) : void => {
 

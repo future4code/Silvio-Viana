@@ -1,5 +1,5 @@
 import { Fighter } from "../src/model/fighter"
-import { validateFighter } from "../src/validadeCharacter"
+import { validateFighter } from "../src/validateFigther"
 
 describe("Testando validação de lutadores", () => {
 
